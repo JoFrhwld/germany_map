@@ -3,7 +3,9 @@ title: "germany_map"
 format: gfm
 ---
 
-`fs` for file systems
+```{r}
+renv::restore()
+```
 
 ```{r}
 library(tidyverse)

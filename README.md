@@ -1,7 +1,12 @@
 # germany_map
 
 
-`fs` for file systems
+``` r
+renv::restore()
+```
+
+    - The library is already synchronized with the lockfile.
+    - The Python library is already up to date.
 
 ``` r
 library(tidyverse)
@@ -59,7 +64,7 @@ de_sf |>
     theme_void()
 ```
 
-![](README_files/figure-commonmark/unnamed-chunk-4-1.png)
+![](README_files/figure-commonmark/unnamed-chunk-5-1.png)
 
 ``` r
 library(tidygeocoder)
@@ -81,7 +86,7 @@ tibble(
 
     Passing 2 addresses to the Nominatim single address geocoder
 
-    Query completed in: 2 seconds
+    Query completed in: 5 seconds
 
 ``` r
 cities_df
@@ -119,4 +124,4 @@ de_sf |>
   theme_void()
 ```
 
-![](README_files/figure-commonmark/unnamed-chunk-9-1.png)
+![](README_files/figure-commonmark/unnamed-chunk-10-1.png)
