@@ -1,0 +1,82 @@
+---
+title: "germany_map"
+format: gfm
+---
+
+`fs` for file systems
+
+```{r}
+library(tidyverse)
+library(fs)
+library(sf)
+library(geodata)
+```
+
+```{r}
+de_st <- gadm(
+  country = "Germany", 
+  path = path_temp(),
+  resolution = 2
+)
+```
+
+```{r}
+de_st |> 
+  st_as_sf() ->
+  de_sf
+```
+
+```{r}
+de_sf |> 
+  ggplot() +
+    geom_sf()+
+    theme_void()
+```
+
+```{r}
+library(tidygeocoder)
+```
+
+```{r}
+tibble(
+  city = c(
+    "Hamburg",
+    "Munich"
+  ),
+  location = str_glue(
+    "{city}, Germany"
+  )
+) |> 
+  geocode(location)-> 
+  cities_df
+```
+
+```{r}
+cities_df
+```
+
+```{r}
+library(ggrepel)
+```
+
+```{r}
+de_sf |> 
+  ggplot() +
+  geom_sf()+
+  geom_point(
+    data = cities_df, 
+    aes(
+      x = long,
+      y = lat
+    )
+  )+
+  geom_text_repel(
+    data = cities_df, 
+    aes(
+      x = long,
+      y = lat,
+      label = city
+    )
+  )+
+  theme_void()
+```
